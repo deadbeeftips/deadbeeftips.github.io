@@ -7,12 +7,38 @@
 
 <script>
     WEATHER_SERVICE = "https://deadbeeftips.github.io/weather.txt";
+    CITY_WEATHER = "https://deadbeeftips.github.io/city_weather.json";
+    weather_by_city = {};
     
+    // This is called when the full document is loaded
     $(document).ready(function() {
         $("#weather_data").html("Weather will be loaded from " + WEATHER_SERVICE);
+        
+        // Update via jQuery get
         $("#weather_button").click(function(){
             load_weather(WEATHER_SERVICE);
-        })
+        });
+        
+        // Update via jQuery load
+        $("#direct_weather_button").click(function(){
+            $("#direct_weather_data").load(WEATHER_SERVICE);
+        });
+
+        // Download data automatically on document load
+        $("#auto_weather_data").load(WEATHER_SERVICE);
+        
+        // Get json document with weather by city
+        $.getJSON(CITY_WEATHER, function(data) {
+            weather_by_city = data; 
+            alert("Got city data: "+data);
+        });
+        
+        // Notice when dropdown changes 
+        $("#city").on('change', function() {
+            city = $("#city").val();
+            alert("You have selected "+city);
+        });
+        
     });
 
     function load_weather(file) {
@@ -29,8 +55,22 @@
 </head>
     
 <body>
-<h1>jQuery Weather Sample</h1>
-<button id="weather_button"> Click for Weather  </button>
-<a id="weather_data"> Waiting for weather...</a>
+    <h1>jQuery Weather Sample</h1>
+    <button id="weather_button"> Click for Weather  </button>
+    <a id="weather_data"> Waiting for weather...</a>
+    <br/>
+    <button id="direct_weather_button"> Click for Weather  </button>
+    <a id="direct_weather_data"> Direct load...</a>
+    <div/>
+    <a id="auto_weather_data">Loading weather directly...</a>
+    <br/>
+    
+    <label for="city"> Enter city to get weather for </label>
+    <select id="city">
+        <option> None </option>
+        <option> Nada </option>
+    </select>
+    <a id="current_weather"></a>
+    
 </body>
 </html>

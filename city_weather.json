@@ -1,0 +1,8 @@
+{
+    "Boulder":{
+        "high":78,"low":55,"sky":"overcast"
+    },
+    "Denver":{
+        "high":198, "low":-332, "sky":"apocalyptic"
+    }
+}
