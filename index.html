@@ -1,7 +1,31 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" />
+
+<script>
+
+function load_data() {
+	file = "weather.txt";
+	alert("loading weather data: " + file)
+	//jQuery.get(file, on_weather_success, on_weather_fail);
+	$.get(file, on_weather_success, on_weather_fail);
+}
+
+function on_weather_success() {
+	alert("Success!");
+}
+
+function on_weather_fail() {
+	alert("Fail!");
+}
+
+</script>
+
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages. This is an initial edit</p>
+<button onclick="load_data()"> click here  </button>
+<a id="testdata">weather...</a>
 </body>
 </html>
