@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" />
 
 <script>
+    WEATHER_SERVICE = "https://deadbeeftips.github.io/weather.txt";
+    
+    $(document).ready(function() {
+        $("#weather_data").html("Weather will be loaded from " + WEATHER_SERVICE);
+        $("#weather_button").click(function(){
+            load_weather(WEATHER_SERVICE);
+        })
+    });
 
-function load_data() {
-	file = "weather.txt";
-	alert("loading weather data: " + file)
-	//jQuery.get(file, on_weather_success, on_weather_fail);
-	$.get(file, on_weather_success, on_weather_fail);
-}
+    function load_weather(file) {
+        $.get(file, function(data) {
+            display_weather(data);
+        })
+    }
 
-function on_weather_success() {
-	alert("Success!");
-}
-
-function on_weather_fail() {
-	alert("Fail!");
-}
+    function display_weather(weather) {
+        $("#weather_data").html(weather);
+    }
 
 </script>
-
+</head>
+    
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages. This is an initial edit</p>
-<button onclick="load_data()"> click here  </button>
-<a id="testdata">weather...</a>
+<h1>jQuery Weather Sample</h1>
+<button id="weather_button"> Click for Weather  </button>
+<a id="weather_data"> Waiting for weather...</a>
 </body>
 </html>
