@@ -3,7 +3,12 @@
 <head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" />
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="w3-theme-l4">
 
 <script>
     WEATHER_SERVICE = "https://deadbeeftips.github.io/weather.txt";
@@ -16,7 +21,7 @@
         
         // Update via jQuery get
         $("#weather_button").click(function(){
-            load_weather(WEATHER_SERVICE);
+            get_weather(WEATHER_SERVICE);
         });
         
         // Update via jQuery load
@@ -30,25 +35,30 @@
         // Get json document with weather by city
         $.getJSON(CITY_WEATHER, function(data) {
             weather_by_city = data; 
-            alert("Got city data: "+data);
+            for (var city in data) {
+                $("#city").append(new Option(city));
+            }
         });
         
         // Notice when dropdown changes 
         $("#city").on('change', function() {
             city = $("#city").val();
-            alert("You have selected "+city);
+            weather = weather_by_city[city];
+            if (weather != null) {
+                $("#selected_city").html(city);
+                $("#selected_high").html(weather["high"]);
+                $("#selected_low").html(weather["low"]);
+                $("#selected_sky").html(weather["sky"]);
+            }
         });
         
     });
 
-    function load_weather(file) {
+    // Load via jQuery get
+    function get_weather(file) {
         $.get(file, function(data) {
-            display_weather(data);
+            $("#weather_data").html(data);
         })
-    }
-
-    function display_weather(weather) {
-        $("#weather_data").html(weather);
     }
 
 </script>
@@ -56,21 +66,35 @@
     
 <body>
     <h1>jQuery Weather Sample</h1>
-    <button id="weather_button"> Click for Weather  </button>
+    <button id="weather_button"> Click for Weather (get) </button>
     <a id="weather_data"> Waiting for weather...</a>
     <br/>
-    <button id="direct_weather_button"> Click for Weather  </button>
+    
+    <button id="direct_weather_button"> Click for Weather (load) </button>
     <a id="direct_weather_data"> Direct load...</a>
-    <div/>
+    <br/>
+    
+    <label for="auto_weather_data"> Auto loaded weather </label>
     <a id="auto_weather_data">Loading weather directly...</a>
     <br/>
     
     <label for="city"> Enter city to get weather for </label>
     <select id="city">
-        <option> None </option>
-        <option> Nada </option>
+        <option> (select one) </option>
     </select>
-    <a id="current_weather"></a>
+    <table class="w3-table">
+        <tr> 
+            <th> City </th> 
+            <th> High </th>
+            <th> Low </th>
+            <th> Sky </th>
+        </tr>
+        <tr>
+            <td id="selected_city"></td>
+            <td id="selected_high"></td>
+            <td id="selected_low"></td>
+            <td id="selected_sky"></td>
+        </tr>
     
 </body>
 </html>
