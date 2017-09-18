@@ -10,13 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     
 <style>
-
     body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-    
-    section-dgs > div.w3-card-4 w3-margin w3-white {
-        background-color: aquamarine
-    }
-    
 </style>
 
 <script>
@@ -80,40 +74,37 @@
     
     <nav>
         <a href="http://cnn.com" target="_blank">News</a>
-        <a href="http://foxnews.com" target="_blank"> Fake News </a>
+        <a href="http://foxnews.com" target="_blank"> Fake </a>
+        <a href="https://www.tfes.org/"> Maybe True...</a>
     </nav>
 </header>
     
-    <!-- Grid -->
-<div class="w3-row">
-    
-    <section-dgs>
-    <h1>jQuery Weather Sample</h1>
+<div class="w3-card-4 w3-margin w3-white">
+    <img src="http://i65.tinypic.com/28ipbes.png" />
     <button id="weather_button"> Click for Weather (get) </button>
     <a id="weather_data"> Waiting for weather...</a>
-    <br/>
-    </section-dgs>
+</div>
 
-    <div class="w3-card-4 w3-margin w3-white">
+<div class="w3-card-4 w3-margin w3-white">
     <img src="https://unagb.files.wordpress.com/2015/11/grizzly-bear2.jpg" />
     <button id="direct_weather_button"> Click for Weather (load) </button>
     <a id="direct_weather_data"> Direct load...</a>
-    <br/>
-    </div>
+</div>
     
-    <div class="w3-card-4 w3-margin w3-white">
+<div class="w3-card-4 w3-margin w3-white">
     <img src="http://cdn1.arkive.org/media/7F/7F4253DE-7F37-49DE-91B3-D1F95E5C5D33/Presentation.Large/American-black-bear-scratching-head.jpg" />
     <label for="auto_weather_data"> Auto loaded weather </label>
     <a id="auto_weather_data">Loading weather directly...</a>
     <br/>
-    </div>
+</div>
 
-  <div class="w3-card-4 w3-margin w3-white">
+<div class="w3-card-4 w3-margin w3-white">
     <label for="city"> Enter city to get weather for </label>
     <select id="city">
         <option> (select one) </option>
     </select>
     <table class="w3-table">
+        <title> Fancy Weather Table </title>
         <tr> 
             <th> City </th> 
             <th> High </th>
@@ -127,7 +118,7 @@
             <td id="selected_sky"></td>
         </tr>
     </table>
-    </div>
+</div>
 
 </body>
 </html>
